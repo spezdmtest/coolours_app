@@ -12,13 +12,13 @@ function generateRandomColor() {
     color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
   }
 
-  function setRendomColors() {
+  return "#" + color;
+}
+
+function setRendomColors() {
     cols.forEach((col) => {
       col.style.background = generateRandomColor();
     });
   }
 
   setRendomColors();
-
-  return "#" + color;
-}
