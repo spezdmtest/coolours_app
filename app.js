@@ -11,7 +11,13 @@ document.addEventListener("click", (event) => {
   const type = event.target.dataset.type;
 
   if (type === "lock") {
-    console.log("perform lock");
+    // console.log(event.target);
+    const node = event.target.tagName.toLowerCase() === "i" 
+    ? event.target
+    : event.target.children[0];
+    console.log(node);
+    node.classList.toggle("fa-lock-open");
+    node.classList.toggle("fa-lock");
   }
 });
 
