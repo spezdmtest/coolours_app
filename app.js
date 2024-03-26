@@ -1,5 +1,12 @@
 const cols = document.querySelectorAll(".col");
 
+document.addEventListener("keydown", (event) => {
+  // console.log(event.code);
+  if (event.code.toLowerCase() === "space") {
+    setRendomColors();
+  }
+});
+
 function generateRandomColor() {
   //RGB
   //FF0000
