@@ -7,6 +7,14 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+document.addEventListener("click", (event) => {
+  const type = event.target.dataset.type;
+
+  if (type === "lock") {
+    console.log("perform lock");
+  }
+});
+
 function generateRandomColor() {
   //RGB
   //FF0000
