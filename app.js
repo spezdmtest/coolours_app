@@ -1,6 +1,7 @@
 const cols = document.querySelectorAll(".col");
 
 document.addEventListener("keydown", (event) => {
+  event.preventDefault();
   // console.log(event.code);
   if (event.code.toLowerCase() === "space") {
     setRendomColors();
@@ -12,9 +13,10 @@ document.addEventListener("click", (event) => {
 
   if (type === "lock") {
     // console.log(event.target);
-    const node = event.target.tagName.toLowerCase() === "i" 
-    ? event.target
-    : event.target.children[0];
+    const node =
+      event.target.tagName.toLowerCase() === "i"
+        ? event.target
+        : event.target.children[0];
     console.log(node);
     node.classList.toggle("fa-lock-open");
     node.classList.toggle("fa-lock");
@@ -38,9 +40,14 @@ function generateRandomColor() {
 
 function setRendomColors() {
   cols.forEach((col) => {
+    const isLocked = col.querySelector("i").classList.contains("fa-lock");
     const text = col.querySelector("h2");
     const button = col.querySelector("button");
     const color = chroma.random();
+
+    if (isLocked) {
+      return;
+    }
 
     text.textContent = color;
     col.style.background = color;
