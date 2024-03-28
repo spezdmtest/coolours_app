@@ -44,20 +44,27 @@ function copyToClickboard(text) {
   return navigator.clipboard.writeText(text);
 }
 
-function setRendomColors() {
-  const colors = [];
-  cols.forEach((col) => {
+function setRendomColors(isInitial) {
+  const colors = isInitial ? getColorsFromHash() : [];
+  cols.forEach((col, index) => {
     const isLocked = col.querySelector("i").classList.contains("fa-lock");
     const text = col.querySelector("h2");
     const button = col.querySelector("button");
-    const color = chroma.random();
 
     if (isLocked) {
       colors.push(text.textContent);
       return;
     }
 
-    colors.push(color);
+    const color = isInitial
+      ? colors[index]
+        ? colors[index]
+        : chroma.random()
+      : chroma.random();
+
+    if (!isInitial) {
+      colors.push(color);
+    }
 
     text.textContent = color;
     col.style.background = color;
@@ -92,4 +99,4 @@ function getColorsFromHash() {
   return [];
 }
 
-setRendomColors();
+setRendomColors(true);
